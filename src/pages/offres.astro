@@ -1,8 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
-
+import Newoffre from '../components/Newoffre.astro';
 ---
 
 <Base titre="Offres">
-    <h1>Offres</h1> <!-- ou "Offres" pour la page des offres -->
+    <h1 class="uppercase text-5xl flex justify-center">Offres</h1> <!-- ou "Offres" pour la page des offres -->
+    <Newoffre nomOffre="Offre 1" prix="1000€"/>
+    <Newoffre nomOffre="Offre 2" prix="2000€"/>
 </Base>
