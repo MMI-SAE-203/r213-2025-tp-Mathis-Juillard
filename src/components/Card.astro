@@ -1,0 +1,10 @@
+---
+const {title, date, favori} = Astro.props;
+---
+
+<div x-data=`{favori: ${favori}}` x-bind:class="{'bg-yellow-100': favori }">
+    <h2>{title}</h2>
+    <p>{date}</p>
+    {favori && <p>🌟</p>}
+    <button x-on:click="favori =!favori">Favori</button>
+</div>

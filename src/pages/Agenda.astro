@@ -1,0 +1,26 @@
+---
+import Base from "../layouts/Base.astro"
+import Card from "../components/Card.astro";
+
+const events = [
+ {
+     title: "Conférence sur les astres",
+     date: "Lundi 12 Juillet",
+     favori: true,
+ },
+ {
+     title: "Atelier sur les étoiles",
+     date: "Mardi 13 Juillet",
+     favori: false,
+ },
+];
+---
+
+
+<Base titre="Agenda">
+    <h1 class="uppercase text-5xl flex justify-center">Agenda</h1> <!-- ou "Offres" pour la page des offres -->
+    {events.map((event)=> (
+      <Card title={event.title} date={event.date} favori={event.favori} />
+    ) 
+    )}
+</Base>
