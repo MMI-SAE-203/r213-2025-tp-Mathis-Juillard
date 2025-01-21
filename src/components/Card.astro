@@ -6,5 +6,5 @@ const {title, date, favori} = Astro.props;
     <h2>{title}</h2>
     <p>{date}</p>
     {favori && <p>🌟</p>}
-    <button x-on:click="favori =!favori">Favori</button>
+    <button x-on:click="favori =!favori" class="bg-slate-200 rounded-2xl p-3">Favori</button>
 </div>
