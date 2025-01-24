@@ -2,8 +2,38 @@
 const {adresse, id, favori, nbChambre, nbSdb, nomMaison, prix, surface, imgUrl} = Astro.props;
 ---
 
-<div x-data=`{favori: ${favori}}` x-bind:class="{'bg-pink-400': favori }">
-    <h2>{adresse}</h2>
-    <p>{prix}</p>
+<div
+    class="h-[16em] w-[18em] border-2 border-[rgba(75,30,133,0.5)] rounded-[1.5em] bg-gradient-to-br from-pink-500 to-pink-100 text-white font-nunito p-[1em] flex justify-center items-left flex-col gap-[0.75em] backdrop-blur-[12px]"
+>
+
+  <div>
+    <h1 class="text-[2em] font-medium">{nomMaison}</h1>
+    <p class="text-[0.85em]">
+        adresse: {adresse}
+    </p>
+  </div>
+
+  <div class="flex justify-between items-center gap-[0.5em]">
+    <p class="text-[1.25em] font-bold">{prix}€</p>
+    <p class="text-[0.85em]">Surface: {surface}m²</p>
+  <button
+    class="h-fit w-fit px-[0.5em] py-[0.125em] border-[1px] rounded-full flex justify-center items-center gap-[0.25em] overflow-hidden group hover:translate-y-[0.125em] duration-200 backdrop-blur-[12px]"
+  >
+    <p class="text-[0.75em]">En savoir plus</p>
+    <svg
+      class="w-4 h-4 group-hover:translate-x-[10%] duration-300"
+      stroke="currentColor"
+      stroke-width="1"
+      viewBox="0 0 24 24"
+      fill="white"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+      ></path>
+    </svg>
+  </button>
 </div>
 </div>
