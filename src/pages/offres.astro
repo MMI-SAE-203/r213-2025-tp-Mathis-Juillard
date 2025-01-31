@@ -9,35 +9,49 @@ console.log(offres);
 
 ---
 
+---
+import Base from './Base.astro';
+import Card from './Card.astro';
+import Newoffre from './Newoffre.astro';
+import { getOffres } from './backend.mjs';
+
+const offres = await getOffres();
+---
+
 <Base titre="Offres">
-    <h1 class="uppercase text-5xl flex justify-center">Offres</h1> <!-- ou "Offres" pour la page des offres -->
+    <h1 class="uppercase text-5xl flex justify-center mb-8">Offres</h1>
+
     <Newoffre nomOffre="Offre 1" prix="1000€"/>
     <Newoffre nomOffre="Offre 2" prix="2000€"/>
-    
-    <!--
-    <div>
-        { offres.map((offre) =>  // afficher les nom des maisons sous forme de liste <ul>.
-            <ul>
-                <li>{offre.nomMaison}</li>
-            </ul>
-        )}
-    </div>
-    -->
 
-    <div x-data="{ showFavorites: false }" class="flex flex-col items-center">
-        <button @click="showFavorites = !showFavorites" class="cursor-pointer transition-all bg-gradient-to-r from-pink-500 to-pink-700 text-white px-6 py-2 rounded-lg border-pink-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px] mb-4">
-            <span x-show="!showFavorites">Afficher les favoris</span>
-            <span x-show="showFavorites">Afficher tout</span>
-        </button>
-
-        <div x-show="!showFavorites" class="flex justify-center gap-24">
-            {offres.map((offre) => <Card {...offre} />)}
+    <div x-data="{ showFavorites: false, view: 'grid' }" class="flex flex-col items-center">
+        <div class="flex gap-4 mb-6">
+            <button @click="showFavorites = !showFavorites" class="cursor-pointer transition-all bg-gradient-to-r from-pink-500 to-pink-700 text-white px-6 py-2 rounded-lg border-pink-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
+                <span x-text="showFavorites ? 'Afficher tout' : 'Afficher les favoris'"></span>
+            </button>
+            <button @click="view = 'grid'" 
+                    x-bind:class="view === 'grid' ? 'bg-pink-600' : 'bg-pink-400'"
+                    class="cursor-pointer transition-all text-white px-6 py-2 rounded-lg border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
+                Vue grille
+            </button>
+            <button @click="view = 'list'" 
+                    x-bind:class="view === 'list' ? 'bg-pink-600' : 'bg-pink-400'"
+                    class="cursor-pointer transition-all text-white px-6 py-2 rounded-lg border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
+                Vue liste
+            </button>
         </div>
-        <div x-show="showFavorites" class="flex justify-center gap-24">
-            {offres.map((offre) => offre.favori && <Card {...offre} />)}
+
+        <div x-bind:class="view === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6' : 'flex flex-col space-y-4 w-full max-w-3xl'">
+            {offres.map((offre) => (
+                <div x-show="!showFavorites || offre.favori">
+                    <Card 
+                        x-bind:class="view === 'list' ? 'flex-row h-auto' : ''"
+                        {...offre} 
+                    />
+                </div>
+            ))}
         </div>
     </div>
-    
 </Base>
 
 
