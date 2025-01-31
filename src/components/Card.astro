@@ -1,5 +1,5 @@
 ---
-const {adresse, id, favori, nbChambre, nbSdb, nomMaison, prix, surface, imgUrl} = Astro.props;
+const {...offres} = Astro.props;
 ---
 
 <div
@@ -7,15 +7,15 @@ const {adresse, id, favori, nbChambre, nbSdb, nomMaison, prix, surface, imgUrl} 
 >
 
   <div>
-    <h1 class="text-[2em] font-medium">{nomMaison}</h1>
+    <h1 class="text-[2em] font-medium">{offres.nom_maison}</h1>
     <p class="text-[0.85em]">
-        adresse: {adresse}
+        adresse: {offres.adresse}
     </p>
   </div>
 
   <div class="flex justify-between items-center gap-[0.5em]">
-    <p class="text-[1.25em] font-bold">{prix}€</p>
-    <p class="text-[0.85em]">Surface: {surface}m²</p>
+    <p class="text-[1.25em] font-bold">{offres.prix}€</p>
+    <p class="text-[0.85em]">Surface: {offres.superficie}m²</p>
   <button
     class="h-fit w-fit px-[0.5em] py-[0.125em] border-[1px] rounded-full flex justify-center items-center gap-[0.25em] overflow-hidden group hover:translate-y-[0.125em] duration-200 backdrop-blur-[12px]"
   >
