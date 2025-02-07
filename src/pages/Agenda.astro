@@ -18,7 +18,7 @@ const events = [
 
 
 <Base titre="Agenda">
-    <h1 class="uppercase text-5xl flex justify-center">Agenda</h1> <!-- ou "Offres" pour la page des offres -->
+    <h1 class="uppercase text-5xl flex justify-center">Agenda</h1> 
     {events.map((event)=> (
       <Card title={event.title} date={event.date} favori={event.favori} />
     ) 

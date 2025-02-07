@@ -1,21 +1,12 @@
 ---
-import Base from '../layouts/Base.astro';
-import Newoffre from '../components/Newoffre.astro';
-import Card from '../components/Card.astro';
+import Base from '../../layouts/Base.astro';
+import Newoffre from '../../components/Newoffre.astro';
+import Card from '../../components/Card.astro';
 
-import { getOffres } from '../backend.mjs';
+import { getOffres } from '../../backend.mjs';
 const offres = await getOffres();
 console.log(offres);
 
----
-
----
-import Base from './Base.astro';
-import Card from './Card.astro';
-import Newoffre from './Newoffre.astro';
-import { getOffres } from './backend.mjs';
-
-const offres = await getOffres();
 ---
 
 <Base titre="Offres">
