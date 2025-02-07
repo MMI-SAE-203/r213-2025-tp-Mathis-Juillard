@@ -10,13 +10,13 @@ if (!offre) {
 }
 ---
 
-<Base titre={offre.nomMaison}>
-     <h2>{offre.nomMaison}</h2>
+<Base>
      <ul>
+          <li><strong>Nom de la maison :</strong> {offre.nom_maison}</li>
           <li><strong>Adresse :</strong> {offre.Adresse}</li>
           <li><strong>Prix :</strong> {offre.Prix} €</li>
           <li><strong>Superficie :</strong> {offre.superficie} m²</li>
-          <li><strong>Nom de la maison :</strong> {offre.nom_maison}</li>
           <li><strong>Nombre de chambre :</strong> {offre.Nombre_chambre}</li>
+          <li><strong>Nombre de salle de bain :</strong> {offre.Nombre_sdb}</li>
      </ul>
 </Base>

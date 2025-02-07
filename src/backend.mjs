@@ -29,3 +29,9 @@ export async function getOffre(id) {
         return null;
     }
 }
+
+
+export async function bySurface(s) {
+    const surfaceRecord = await pb.collection('Agence').getFullList({ filter : `superficie> ${200}`, }) ;
+    return surfaceRecord ;
+    }
