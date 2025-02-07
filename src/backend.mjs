@@ -18,7 +18,6 @@ export async function getOffres() {
 }
 
 
-//backend.mjs
 export async function getOffre(id) {
     try {
         let data = await pb.collection('Agence').getOne(id);
@@ -34,4 +33,9 @@ export async function getOffre(id) {
 export async function bySurface(s) {
     const surfaceRecord = await pb.collection('Agence').getFullList({ filter : `superficie> ${200}`, }) ;
     return surfaceRecord ;
+    }
+
+export async function byPrix(p) {
+        const prixRecord = await pb.collection('Agence').getFullList({ filter: `Prix < ${1000}`, }) ;
+        return prixRecord;
     }

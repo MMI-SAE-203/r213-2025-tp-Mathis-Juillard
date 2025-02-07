@@ -1,0 +1,14 @@
+---
+import { byPrix } from '../../../backend.mjs'
+
+const { prix } = Astro.params;
+
+const offres = await byPrix(prix);
+---
+
+{offres.map(offre => (
+    <div>
+        <h2> Nom de la maison: {offre.nom_maison}</h2>
+        <p>  Prix: {offre.Prix} $</p>
+    </div>
+))}
