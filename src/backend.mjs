@@ -39,3 +39,20 @@ export async function byPrix(p) {
         const prixRecord = await pb.collection('Agence').getFullList({ filter: `Prix < ${1000}`, }) ;
         return prixRecord;
     }
+
+
+    export async function addOffre(house) {
+        try {
+            await pb.collection('Agence').create(house);
+            return {
+                success: true,
+                message: 'Offre ajoutée avec succès'
+            };
+        } catch (error) {
+            console.log('Une erreur est survenue en ajoutant la maison', error);
+            return {
+                success: false,
+                message: 'Une erreur est survenue en ajoutant la maison'
+            };
+        }
+    }
