@@ -21,7 +21,7 @@ export async function getOffres() {
 export async function getOffre(id) {
     try {
         let data = await pb.collection('Agence').getOne(id);
-        data.imageUrl = pb.files.getURL(data, data.image);
+        data.img = pb.files.getURL(data, data.image);
         return data;
     } catch (error) {
         console.log('Une erreur est survenue en lisant la maison', error);
@@ -54,5 +54,22 @@ export async function byPrix(p) {
                 success: false,
                 message: 'Une erreur est survenue en ajoutant la maison'
             };
+        }
+    }
+
+    export async function filterByPrix(prixMin, prixMax) {
+        try {
+            let data = await pb.collection('Agence').getFullList({
+                sort: '-created',
+                filter: `Prix >= ${prixMin} && Prix <= ${prixMax}`
+            });
+            data = data.map((maison) => {
+                maison.img = pb.files.getURL(maison, maison.images);
+                return maison;
+            });
+            return data;
+        } catch (error) {
+            console.log('Une erreur est survenue en filtrant la liste des maisons', error);
+            return [];
         }
     }
