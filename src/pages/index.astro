@@ -1,11 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
-import Contactform from '../pages/Contactform.astro';
 ---
 
 <Base titre="Accueil">
-    <h1 class="uppercase text-5xl flex justify-center">Accueil</h1> <!-- ou "Offres" pour la page des offres -->
-	
+    <h1 class="uppercase text-5xl flex justify-center">Accueil</h1> 
+    <div><h1 class="uppercase text-5xl flex justify-center bg-pink-400">Bienvenue sur Myhouse</h1>
+    </div>
+    <p class="text-center">Découvrez nos offres de maisons à vendre</p>
+    <p class="text-center">Vous pouvez consulter les offres disponibles et filtrer par prix</p>
+    <p class="text-center">Vous pouvez également consulter les détails de chaque offre</p>
+    <p class="text-center">N'hésitez pas à nous contacter pour plus d'informations</p>
+    <p class="text-center">Bonne visite !</p>
+    <div class="flex justify-center">
+        <a href="/offres" class="px-6 py-2 bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-lg hover:brightness-110 transition-all">Voir les offres</a>
+    </div>
 </Base>
 
 
