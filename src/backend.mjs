@@ -87,3 +87,9 @@ export async function byPrix(p) {
         }
     }
    
+    export async function allMaisonsByAgentId(agentId) {
+        const maison = await pb.collection('Agence').getFullList({
+            filter: `Agent = "${agentId}"`,
+        });
+        return maison;
+    }
