@@ -1,10 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Card from '../../components/Card.astro';
+import Card from '../../components/Agentcard.astro';
 import { getAgents } from '../../backend.mjs';
 
 const agent = await getAgents();
 let message = '';
+console.log(agent);
+
 
 ---
 
@@ -12,7 +14,6 @@ let message = '';
     <div class="container mx-auto px-4">
         <h1 class="text-5xl font-bold text-center mb-8 uppercase">Agents</h1>
 
-        
         <p class="text-center mb-4">{message}</p>
 
         <div x-data="{ showFavorites: false, view: 'grid' }" class="flex flex-col items-center">
@@ -46,7 +47,7 @@ let message = '';
                 class="w-full"
             >
                 {agent.map((agent) => (
-                    <div x-show="!showFavorites || offre.favori">
+                    <div x-show="!showFavorites || agent.favori">
                         <Card 
                             x-bind:class="view === 'list' ? 'flex-row h-auto' : ''"
                             {...agent} 
@@ -55,8 +56,5 @@ let message = '';
                 ))}
             </div>
         </div>
-
+    </div>
 </Base>
-
-
-
