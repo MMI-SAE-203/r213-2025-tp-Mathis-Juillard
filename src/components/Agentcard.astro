@@ -1,0 +1,14 @@
+---
+const {...agent} = Astro.props;
+---
+
+<div class="border-2 border-[rgba(75,30,133,0.5)] rounded-[1.5em] bg-gradient-to-br from-pink-500 to-pink-100 text-white font-nunito p-[1em] flex justify-center items-center overflow-hidden transition-all duration-300 ease-in-out"
+    x-bind:class="view === 'list' ? 'flex-row h-24 w-full' : 'flex-col h-[16em] w-[18em]'">
+
+    <h1 x-bind:class="view === 'list' ? 'text-[1.2em]' : 'text-[1.5em]'"
+     class="font-medium text-center">
+        {agent.nom} {agent.prenom}
+    </h1>
+    <p class="text-center mt-2">{agent.email}</p>
+    <a href={`/agents/${agent.id}`} class="text-red-500 underline mt-2">Voir plus</a>
+</div>

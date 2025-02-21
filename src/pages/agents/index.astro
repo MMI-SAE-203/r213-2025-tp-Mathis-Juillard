@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import Card from '../../components/Card.astro';
+import { getAgents } from '../../backend.mjs';
+
+const agent = await getAgents();
+let message = '';
+
+---
+
+<Base titre="Agents">
+    <div class="container mx-auto px-4">
+        <h1 class="text-5xl font-bold text-center mb-8 uppercase">Agents</h1>
+
+        
+        <p class="text-center mb-4">{message}</p>
+
+        <div x-data="{ showFavorites: false, view: 'grid' }" class="flex flex-col items-center">
+            <div class="flex flex-wrap justify-center gap-4 mb-6">
+                <button 
+                    @click="showFavorites = !showFavorites"
+                    class="px-6 py-2 bg-gradient-to-r from-pink-500 to-pink-700 text-white rounded-lg border-b-4 border-pink-600 hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:translate-y-[2px] transition-all"
+                >
+                    <span x-text="showFavorites ? 'Afficher tout' : 'Afficher les favoris'"></span>
+                </button>
+                
+                <button 
+                    @click="view = 'grid'"
+                    x-bind:class="view === 'grid' ? 'bg-pink-600' : 'bg-pink-400'"
+                    class="px-6 py-2 text-white rounded-lg border-b-4 border-pink-500 hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:translate-y-[2px] transition-all"
+                >
+                    Vue grille
+                </button>
+                
+                <button 
+                    @click="view = 'list'"
+                    x-bind:class="view === 'list' ? 'bg-pink-600' : 'bg-pink-400'"
+                    class="px-6 py-2 text-white rounded-lg border-b-4 border-pink-500 hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:translate-y-[2px] transition-all"
+                >
+                    Vue liste
+                </button>
+            </div>
+
+            <div 
+                x-bind:class="view === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6' : 'flex flex-col space-y-4 w-full max-w-3xl'"
+                class="w-full"
+            >
+                {agent.map((agent) => (
+                    <div x-show="!showFavorites || offre.favori">
+                        <Card 
+                            x-bind:class="view === 'list' ? 'flex-row h-auto' : ''"
+                            {...agent} 
+                        />
+                    </div>
+                ))}
+            </div>
+        </div>
+
+</Base>
+
+
+
